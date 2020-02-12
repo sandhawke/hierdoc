@@ -1,0 +1,34 @@
+<!DOCTYPE html><html dir="ltr" lang="en">
+  <head>
+    <link rel="stylesheet" href="./show-js-error.css" />
+    <script src="./show-js-error.custom.js"></script>
+    <script>
+      showJSError.init({
+        copyText: 'Copy to clipboard',
+        sendText: 'Send Bug Report',
+        sendUrl: 'https://github.com/sandhawke/decent-cats/issues/new?title={title}&body={body}',
+        userAgent: navigator.userAgent,
+        helpLinks: true
+      });
+    </script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>title set at runtime</title>
+    <script src="./openup.js"></script>
+    <link rel="stylesheet" href="./part1.css" />
+    <link rel="stylesheet" href="respec-mainstyle.css" />
+    <link rel="stylesheet" href="./part2.css" />
+    <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base" />
+    <link rel="stylesheet" href="./spinner.css" />
+    <link rel="stylesheet" href="./part3.css" />
+    <link rel="stylesheet" href="./tooltip.css" />
+  </head>
+  <body class="h-entry informative">
+    <div class="erase-on-start">
+      Sorry, JavaScript isn't working properly, and this page can't
+      load without it.
+    </div>
+    <div id="w3cbody"></div>
+    <script src="./bundle.js"></script>
+  </body>
+</html>

@@ -1,0 +1,1 @@
+console.error("Error: Cannot find module '/home/sandro/Repos/hierdoc/example/nest.jsgaas' from '/home/sandro/Repos/hierdoc'");
