@@ -1,32 +1,26 @@
 {
   "name": "hierdoc",
   "version": "0.0.1",
-  "description": "Simple hierarchical document (eg for technical spec)",
+  "description": "[![NPM version][npm-image]][npm-url]",
   "main": "index.js",
+  "directories": {
+    "example": "example"
+  },
   "scripts": {
-    "test": "npx standard && npx tap --cov test*.js test/*.js",
-    "tap": "npx tap --cov test*.js test/*.js",
-    "coveralls": "export COVERALLS_REPO_TOKEN=$(cat $HOME/.coveralls-tokens/$npm_package_name); npx tap --cov test*.js test/*.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sandhawke/hierdoc.git"
   },
-  "keywords": [
-    "sandhawke"
-  ],
   "author": "Sandro Hawke (http://hawke.org/sandro)",
-  "license": "MIT",
+  "license": "UNLICENSED",
   "bugs": {
     "url": "https://github.com/sandhawke/hierdoc/issues"
   },
   "homepage": "https://github.com/sandhawke/hierdoc#readme",
-  "devDependencies": {
-    "tape": "^4.9.1"
-  },
   "dependencies": {
-    "debug": "^4.1.0",
-    "emerj": "^1.0.0",
+    "debug": "^4.1.1",
     "when-dom-ready": "^1.2.12"
   }
 }

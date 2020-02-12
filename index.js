@@ -1,4 +1,4 @@
-const emerj = require('emerj')
+// const emerj = require('emXXerj')
 const fs = require('fs')
 const whenDomReady = require('when-dom-ready')
 const debug = require('debug')('hierdoc')
@@ -11,6 +11,7 @@ const $ = (selector, elem) => {
 class Section {
   constructor () {
     this.children = []
+    this.out = []
   }
 
   section (title, id) {
@@ -26,29 +27,54 @@ class Section {
     if (index < 0) throw Error('attempt to remove unknown child')
     this.children.splice(index, 1)
   }
+
+  sectionById (id) {
+    if (this.id === id) return this
+    for (const child of this.children) {
+      const r = child.sectionById(id)
+      if (r) return r
+    }
+    return undefined
+  }
 }
 
 class Doc extends Section {
   constructor (config) {
     super ()
-    Object.assign(this, config)
-    this.config = config
+    if (config) Object.assign(this, config)
     this.counter = 0
   }
 
-  genId () {
-    return 's' + (++this.counter)
+  genId (title, section) {
+    let n = 1
+    let base = (title
+              .replace(/[^a-zA-Z0-9]/g, '-')
+              .replace(/-+/g, '-')
+              .replace(/(^-)|(-$)/, '')
+              .toLowerCase())
+    while (true) {
+      let id = base
+      if (n > 1) id = base + '-' + n
+      if (this.sectionById(id)) {
+        n++
+      } else {
+        return id
+      }
+    }
   }
-  
+
   assemble () {
     const toc = []
     const main = []
     
     const secNoArray = [0]  
     let prevLevel = 1
-    
+
     const doSection = (s, path) => {
-      if (!s.id) s.id = this.genId() // use title?
+      if (!s.id) {
+        s.id = this.genId(s.title, s)
+        console.log('assigned s.id = ', s.id)
+      }
       
       s.hLevel = path.length
       
@@ -88,6 +114,7 @@ class Doc extends Section {
       main.push('')
 
       if (s.html) main.push(s.html)
+      main.push(...s.out)
       
       if (path.length > 10) {
         main.push('<h1>LOOP IN CATEGORIES</h1>')
